@@ -1,0 +1,189 @@
+// BEGIN DEFINES
+#define! cos(f float) float
+#define! sin(f float) float
+#define! sqrt(f float) float
+#define! acos(f float) float
+#define! asin(f float) float
+#define! atan(f float) float
+#define! cosh(f float) float
+#define! sinh(f float) float
+#define! tanh(f float) float
+#define! exp(f float) float
+#define! log(f float) float
+#define! log10(f float) float
+#define! pow(num float, exponent float) float
+#define! ceil(f float) float 
+#define! floor(f float) float
+// END DEFINES
+
+// BEGIN CONSTANTS
+const BML_PI = 3.14159265359
+// END CONSTANTS
+
+// BEGIN STRUCTURS
+struct bml_vec2 {
+    x: float
+    y: float
+}
+
+struct bml_vec3 {
+    x: float
+    y: float
+    z: float
+}
+
+struct bml_vec4 {
+    x: float
+    y: float
+    z: float
+    w: float
+}
+
+struct bml_mat4 {
+    elements: [][]float
+}
+
+struct bml_quat {
+    x: float
+    y: float
+    z: float
+    w: float
+}
+// END STRUCTURES
+
+// BEGIN GENERAL PURPOSE FUNCTIONS
+bml_min(a float, b float) float {
+    if a < b {
+        return a
+    }
+    return b
+}
+
+bml_max(a float, b float) float {
+    if a > b {
+        return a 
+    }
+    return b
+}
+
+bml_square(a float) float {
+    return a * a
+}
+
+bml_lerp(a float, t float, b float) float {
+    temp = 1.0 - t
+    result = temp * a + t * b
+    return result
+}
+// END GENERAL PURPOSE FUNCTIONS
+
+// BEGIN VEC2
+bml_vec2(x float, y float) bml_vec2 {
+    v = bml_vec2{}
+    v.x = x
+    v.y = y
+    return v
+}
+
+bml_vec2f(s float) bml_vec2 {
+    v = bml_vec2{}
+    v.x = s
+    v.y = s
+    return v
+}
+
+bml_vec2_id() bml_vec2 {
+    v = bml_vec2{}
+    v.x = 0.0
+    v.y = 0.0
+    return v
+}
+
+bml_vec2_add(l bml_vec2, r bml_vec2) bml_vec2 {
+    v = bml_vec2{}
+    v.x = l.x + r.x
+    v.y = l.y + r.y
+    return v
+}
+
+bml_vec2_add_f(l bml_vec2, r float) bml_vec2 {
+    v = bml_vec2{}
+    v.x = l.x + r
+    v.y = l.y + r
+    return v
+}
+
+bml_vec2_sub(l bml_vec2, r bml_vec2) bml_vec2 {
+    v = bml_vec2{}
+    v.x = l.x - r.x
+    v.y = l.y - r.y
+    return v
+}
+
+bml_vec2_sub_f(l bml_vec2, r float) bml_vec2 {
+    v = bml_vec2{}
+    v.x = l.x - r
+    v.y = l.y - r
+    return v
+}
+
+bml_vec2_mul(l bml_vec2, r bml_vec2) bml_vec2 {
+    v = bml_vec2{}
+    v.x = l.x * r.x
+    v.y = l.y * r.y
+    return v
+}
+
+bml_vec2_mul_f(l bml_vec2, r float) bml_vec2 {
+    v = bml_vec2{}
+    v.x = l.x * r
+    v.y = l.y * r
+    return v
+}
+
+bml_vec2_div(l bml_vec2, r bml_vec2) bml_vec2 {
+    v = bml_vec2{}
+    v.x = l.x / r.x
+    v.y = l.y / r.y
+    return v
+}
+
+bml_vec2_div_f(l bml_vec2, r float) bml_vec2 {
+    v = bml_vec2{}
+    v.x = l.x / r
+    v.y = l.y / r
+    return v
+}
+
+bml_vec2_eq(l bml_vec2, r bml_vec2) bool {
+    if l.x == r.x && l.y == r.y {
+        return true 
+    }
+    return false
+}
+
+bml_vec2_dot(l bml_vec2, r bml_vec2) float {
+    return l.x * r.x + l.y * r.y
+}
+
+bml_vec2_lenght_squared(l bml_vec2) float {
+    return bml_vec2_dot(l, l)
+}
+
+bml_vec2_length(l bml_vec2) float {
+    return sqrt(bml_vec2_dot(l, l))
+}
+
+bml_vec2_normalize(l bml_vec2) bml_vec2 {
+    length = bml_vec2_length(l)
+    v = bml_vec2{}
+
+    if length != 0.0 {
+        factor = 1.0 / length
+        v.x = l.x * factor
+        v.y = l.y * factor
+    }   
+
+    return v
+}
+// END VEC2
