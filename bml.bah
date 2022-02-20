@@ -333,3 +333,147 @@ bml_vec3_cross(l bml_vec3, r bml_vec3) bml_vec3 {
     return v
 }
 // END VEC3
+
+// BEGIN VEC4
+bml_vec4(x float, y float, z float, w float) bml_vec4 {
+    v = bml_vec4{}
+    v.x = x
+    v.y = y
+    v.z = z
+    v.w = w
+    return v
+}
+
+bml_vec4f(s float) bml_vec4 {
+    v = bml_vec4{}
+    v.x = s
+    v.y = s
+    v.z = s
+    v.w = s
+    return v
+}
+
+bml_vec4_v3(v bml_vec3, s float) bml_vec4 {
+    r = bml_vec4{}
+    r.x = v.x
+    r.y = v.y
+    r.z = v.z
+    r.w = s
+    return r
+}
+
+bml_vec4_id() bml_vec4 {
+    v = bml_vec4{}
+    v.x = 0.0
+    v.y = 0.0
+    v.z = 0.0
+    v.w = 0.0
+    return v
+}
+
+bml_vec4_add(l bml_vec4, r bml_vec4) bml_vec4 {
+    v = bml_vec4{}
+    v.x = l.x + r.x
+    v.y = l.y + r.y
+    v.z = l.z + r.z
+    v.w = l.w + r.w
+    return v
+}
+
+bml_vec4_add_f(l bml_vec4, r float) bml_vec4 {
+    v = bml_vec4{}
+    v.x = l.x + r
+    v.y = l.y + r
+    v.z = l.z + r
+    v.w = l.w + r
+    return v
+}
+
+bml_vec4_sub(l bml_vec4, r bml_vec4) bml_vec4 {
+    v = bml_vec4{}
+    v.x = l.x - r.x
+    v.y = l.y - r.y
+    v.z = l.z - r.z
+    v.w = l.w - r.w
+    return v
+}
+
+bml_vec4_sub_f(l bml_vec4, r float) bml_vec4 {
+    v = bml_vec4{}
+    v.x = l.x - r
+    v.y = l.y - r
+    v.z = l.z - r
+    v.w = l.w - r
+    return v
+}
+
+bml_vec4_mul(l bml_vec4, r bml_vec4) bml_vec4 {
+    v = bml_vec4{}
+    v.x = l.x * r.x
+    v.y = l.y * r.y
+    v.z = l.z * r.z
+    v.w = l.w * r.w
+    return v
+}
+
+bml_vec4_mul_f(l bml_vec4, r float) bml_vec4 {
+    v = bml_vec4{}
+    v.x = l.x * r
+    v.y = l.y * r
+    v.z = l.z * r
+    v.w = l.w * r
+    return v
+}
+
+bml_vec4_div(l bml_vec4, r bml_vec4) bml_vec4 {
+    v = bml_vec4{}
+    v.x = l.x / r.x
+    v.y = l.y / r.y
+    v.z = l.z / r.z
+    v.w = l.w / r.w
+    return v
+}
+
+bml_vec4_div_f(l bml_vec4, r float) bml_vec4 {
+    v = bml_vec4{}
+    v.x = l.x / r
+    v.y = l.y / r
+    v.z = l.z / r
+    v.w = l.w / r
+    return v
+}
+
+bml_vec4_eq(l bml_vec4, r bml_vec4) bool {
+    if l.x == r.x && l.y == r.y && l.z == r.z && l.w == r.w {
+        return true 
+    }
+    return false
+}
+
+bml_vec4_dot(l bml_vec4, r bml_vec4) float {
+    return l.x * r.x + l.y * r.y + l.z * r.z + l.w * r.w
+}
+
+bml_vec4_lenght_squared(l bml_vec4) float {
+    return bml_vec4_dot(l, l)
+}
+
+bml_vec4_length(l bml_vec4) float {
+    return sqrt(bml_vec4_dot(l, l))
+}
+
+bml_vec4_normalize(l bml_vec4) bml_vec4 {
+    length = bml_vec4_length(l)
+    v = bml_vec4{}
+
+    if length != 0.0 {
+        factor = 1.0 / length
+        v.x = l.x * factor
+        v.y = l.y * factor
+        v.z = l.z * factor
+        v.w = l.w * factor
+    }   
+
+    return v
+}
+// END VEC4
