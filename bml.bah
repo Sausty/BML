@@ -187,3 +187,149 @@ bml_vec2_normalize(l bml_vec2) bml_vec2 {
     return v
 }
 // END VEC2
+
+// BEGIN VEC3
+bml_vec3(x float, y float, z float) bml_vec3 {
+    v = bml_vec3{}
+    v.x = x
+    v.y = y
+    v.z = z
+    return v
+}
+
+bml_vec3f(s float) bml_vec3 {
+    v = bml_vec3{}
+    v.x = s
+    v.y = s
+    v.z = s
+    return v
+}
+
+bml_vec3_v2(v bml_vec2, s float) bml_vec3 {
+    r = bml_vec3{}
+    r.x = v.x
+    r.y = v.y
+    r.z = s
+    return r
+}
+
+bml_vec3_id() bml_vec3 {
+    v = bml_vec3{}
+    v.x = 0.0
+    v.y = 0.0
+    v.z = 0.0
+    return v
+}
+
+bml_vec3_add(l bml_vec3, r bml_vec3) bml_vec3 {
+    v = bml_vec3{}
+    v.x = l.x + r.x
+    v.y = l.y + r.y
+    v.z = l.z + r.z
+    return v
+}
+
+bml_vec3_add_f(l bml_vec3, r float) bml_vec3 {
+    v = bml_vec3{}
+    v.x = l.x + r
+    v.y = l.y + r
+    v.z = l.z + r
+    return v
+}
+
+bml_vec3_sub(l bml_vec3, r bml_vec3) bml_vec3 {
+    v = bml_vec3{}
+    v.x = l.x - r.x
+    v.y = l.y - r.y
+    v.z = l.z - r.z
+    return v
+}
+
+bml_vec3_sub_f(l bml_vec3, r float) bml_vec3 {
+    v = bml_vec3{}
+    v.x = l.x - r
+    v.y = l.y - r
+    v.z = l.z - r
+    return v
+}
+
+bml_vec3_mul(l bml_vec3, r bml_vec3) bml_vec3 {
+    v = bml_vec3{}
+    v.x = l.x * r.x
+    v.y = l.y * r.y
+    v.z = l.z * r.z
+    return v
+}
+
+bml_vec3_mul_f(l bml_vec3, r float) bml_vec3 {
+    v = bml_vec3{}
+    v.x = l.x * r
+    v.y = l.y * r
+    v.z = l.z * r
+    return v
+}
+
+bml_vec3_div(l bml_vec3, r bml_vec3) bml_vec3 {
+    v = bml_vec3{}
+    v.x = l.x / r.x
+    v.y = l.y / r.y
+    v.z = l.z / r.z
+    return v
+}
+
+bml_vec3_div_f(l bml_vec3, r float) bml_vec3 {
+    v = bml_vec3{}
+    v.x = l.x / r
+    v.y = l.y / r
+    v.z = l.z / r
+    return v
+}
+
+bml_vec3_eq(l bml_vec3, r bml_vec3) bool {
+    if l.x == r.x && l.y == r.y && l.z == r.z {
+        return true 
+    }
+    return false
+}
+
+bml_vec3_dot(l bml_vec3, r bml_vec3) float {
+    return l.x * r.x + l.y * r.y + l.z * r.z
+}
+
+bml_vec3_lenght_squared(l bml_vec3) float {
+    return bml_vec3_dot(l, l)
+}
+
+bml_vec3_length(l bml_vec3) float {
+    return sqrt(bml_vec3_dot(l, l))
+}
+
+bml_vec3_normalize(l bml_vec3) bml_vec3 {
+    length = bml_vec3_length(l)
+    v = bml_vec3{}
+
+    if length != 0.0 {
+        factor = 1.0 / length
+        v.x = l.x * factor
+        v.y = l.y * factor
+        v.z = l.z * factor
+    }   
+
+    return v
+}
+
+bml_vec3_cross(l bml_vec3, r bml_vec3) bml_vec3 {
+    v = bml_vec3{}
+
+    v.x  = l.y * r.z
+    v.x  = v.x - l.z * r.y
+
+    v.y  = l.z * r.x
+    v.y  = v.y - l.x * r.z
+
+    v.z  = l.x * r.y
+    v.z  = v.z - l.y * r.x
+
+    return v
+}
+// END VEC3
